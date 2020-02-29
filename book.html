@@ -1,21 +1,77 @@
 <!DOCTYPE html>
 
 <html>
-<head></head>
+<head>
+<script>
+function validate_num(number, element, min_len, max_len){
+  //definition of my function  
+
+  
+  var numbers = /^[0-9]+$/;
+  if ((number.length > (min_len-1) ) && (number.length < (max_len+1) ) && (number.match(numbers))) {
+  element.style.border = 'dashed 2px green'; 
+  
+  }//end if
+  else{
+   element.style.border = 'dashed 2px red'
+  
+  }//end else
+       
+}// end of validate_num
+  
+function validate_text(text, element){
+
+  var letters = /^[a-z,' ']+$/;
+  if ((text.length > 0) && (text.match(letters) )) {
+  element.style.border = 'dashed 2px green';  }//end if
+  else{
+  element.style.border = 'dashed 2px red';
+  }//end else
+       
+}// end of validate_text  
+  
+function validate_email(email_text, element){
+var letters = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if (email_text.match(letters)){
+ element.style.border = 'dashed 2px green';
+}//end if
+else {
+//element.style.border-size = 5px;
+element.style.border = 'dashed 2px red';}//end else
+
+}//end validate_email
+
+
+  
+  
+  </script>
+
+
+
+</head>
+<a href="./bugsRus.html"><button style="color:black; width:60px; height:40px; font-size:80%">HOME</button></a>
+<style>
+div{
+
+margin:auto;
+display:block;
+width:50%;
+}
+</style>
 
 <body bgcolor="beige">
-
-<p style="font-family:cambaria;
+<div>
+<h1 style="font-family:Algeria;
 font-size:300%;
-color:red;"> Book an Appointment ASAP </P> </br>
+color:red;"> Book an Appointment ASAP </h1> </br>
 
 
 
-<form name="customer">
+<form name="customer" action="confirmation page.php" method="POST">
 <table>
-<tr><td>Name</td><td><input type="text" id= "fname" name="fname" /></td></tr>
-<tr><td>Email</td><td><input type= "email" id="email" name="email"/></td></tr>
-<tr><td>Contact</td><td><input type= "text" id="contact" name= "contact"/> </td></tr> </br>
+<tr><td>Name</td><td><input type="text" id= "fname" name="fname" onblur="validate_text(fname.value, document.getElementById('fname'))"/></td></tr>
+<tr><td>Email</td><td><input type= "email" id="email" name="email" onblur="validate_email(email.value,document.getElementById('email'))"/></td></tr>
+<tr><td>Contact</td><td><input type= "text" id="contact" name= "contact" onblur="validate_num(contact.value, document.getElementById('contact'), 10, 10)"/> </td></tr>
 
 <tr><td>Type of Pest problem</td><td><input type="radio" id="Termites" name="pest type" value="Termites"><label for="Termites">Termites</label><br>
 <input type="radio" id="Mice" name="pest type" value="Mice"><label for="Mice">Mice</label><br>
@@ -34,7 +90,7 @@ color:red;"> Book an Appointment ASAP </P> </br>
 
 
 </form>
-
+</div>
 </body>
 
 
