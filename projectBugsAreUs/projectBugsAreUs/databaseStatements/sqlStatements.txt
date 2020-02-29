@@ -1,0 +1,62 @@
+/****BEGIN: RESET SERVICEBOOKING TABLE****/
+
+DELETE FROM SERVICEBOOKING;
+ALTER TABLE SERVICEBOOKING AUTO_INCREMENT = 1;
+
+/****END: RESET SERVICEBOOKING TABLE****/
+
+
+/****BEGIN: RESET CUSTOMER TABLE****/
+/**NOTE: To reset CUSTOMER TABLE, RESET SERVICEBOOKING FIRST**/
+
+DELETE FROM CUSTOMER;
+ALTER TABLE CUSTOMER AUTO_INCREMENT = 1;
+
+/****END: RESET CUSTOMER TABLE****/
+
+
+/****BEGIN: ADD A CUSTOMER ****/
+
+INSERT INTO CUSTOMER(customerName
+                   , customerEmail
+                   , customerContact)
+     VALUES('John Doe'
+           ,'johnDoe@email.com'
+           ,'0412345678'
+     );
+
+/**OPTIONAL: Get the ID of added customer
+SELECT LAST_INSERT_ID() AS 'customerID';
+
+/****END: ADD A CUSTOMER****/
+
+
+/****BEGIN: GET THE SERVICECODE ****/
+ SELECT serviceCode
+   FROM SERVICE
+  WHERE serviceName = 'Termites';
+
+/****END: GET THE SERVICECODE ****/
+
+
+/****BEGIN: ADD A SERVICE BOOKING ****/
+/**NOTE: ONLY customers in the CUSTOMER TABLE can **/
+/*add service booking **/
+
+INSERT INTO SERVICEBOOKING (customerID
+                           ,serviceCode
+                           ,bookingDate
+                           ,timeOfTheDay
+                           ,comments
+                            )
+     VALUES(1
+           ,1
+           ,'2020-02-19'
+           ,'Morning'
+           ,'Please focus on the garage.'
+     );
+
+/**OPTIONAL: Get the bookingNumber of added SERVICE BOOKING**/
+SELECT LAST_INSERT_ID() AS 'bookingNumber';
+
+/****END: ADD A SERVICE BOOKING****/
