@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>BUG ARE US</title>
+	<script>
+		function check_name( v, lb ){
+			var patt = /^[0-9]/g;
+			var v = v.trim();
+
+			if( v != "" && v.length > 0; && v.match( patt) == null ){
+				lb.innerHTML = "&#10003;";
+				lb.style.color = "green";
+			}else{
+				lb.innerHTML = "&#9747; ";
+				lb.style.color = "red";
+			}
+			
+			return;
+		}
+
+		function check_email( v, lb ){
+			var patt = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+			var v = v.trim();
+
+			if( v.match( patt) ){
+				lb.innerHTML = "&#10003;";
+				lb.style.color = "green";
+			}else{
+				lb.innerHTML = "&#9747; ";
+				lb.style.color = "red";
+			}
+			
+			return;
+		}
+	</script>
+	<style>
+	
+	</style>
+	<div id="logo">BUG ARE US</div>
+	<div id="cont">0404 000 444</div>
+</head>
+<body>
+	<div>
+		<form>
+			<table>
+				<tr>
+					<td>Name</td>
+					<td><input type="text" id="fname" name="fname" value="" onblur="check_name(this.value,document.getElementById('lb_fname'));"> <label id="lb_fname"></label></td>
+				</tr>
+				<tr>
+					<td>Last Name</td>
+					<td><input type="text" id="lname" name="lname" value="lastname" onblur="check_name(this.value,document.getElementById('lb_lname'));"> <label id="lb_lname"></label></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><input type="text" id="email" name="email" value="email" onblur="check_email(this.value,document.getElementById('lb_email'));"> <label id="lb_email"></label></td>
+				</tr>
+				<tr>
+					<td>Telephone</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Type of pest problem</td>
+					<td>
+						<input type="radio" id="termites" name="problem" value="Termites"> Termites 
+						<input type="radio" id="mice" name="problem" value="Mice"> Mice 
+						<input type="radio" id="cockroaches " name="problem" value="Cockroaches "> Cockroaches 
+					</td>
+				</tr>
+				<tr>
+					<td>Booking date</td>
+					<td>
+						<select id="date"></select>
+						<select id="month"></select>
+						<select id="year"></select>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<script>
+		var days = [31,29,31,30,31,30,31,31,30,31,30,31];
+		var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+		
+		var d = new Date();
+		var month = d.getMonth();
+		var year = d.getFullYear();
+		var para;
+		var node;
+
+		var element = document.getElementById( "date" );
+
+		for( i = 0; i < days[month]; i++ ) {
+			para = document.createElement( "option" );
+			node = document.createTextNode( i+1 );
+
+			para.appendChild(node);
+			element.appendChild( para );
+		}
+
+		element = document.getElementById( "month" );
+
+		for( i = 0; i < months.length; i ++ ) {
+			para = document.createElement( "option" );
+			node = document.createTextNode( months[i] );
+
+			para.appendChild(node);
+			element.appendChild( para );		
+		}
+
+		element = document.getElementById( "year" );
+
+		for( i = 0; i < 2; i ++ ) {
+			para = document.createElement( "option" );
+			node = document.createTextNode( year+i );
+
+			para.appendChild(node);
+			element.appendChild( para );		
+		}
+
+
+	</script>
+</body>
+</html>
