@@ -3,6 +3,17 @@
 <html>
 
 <head>
+<style>
+div {
+
+margin: auto;
+width: 80%;
+display: block;
+border: solid 4px;
+padding:2%
+
+ }
+</style>
   <script>
     function validate_num(number, element, min_len, max_len) {
       //definition of my function  
@@ -50,7 +61,10 @@
   <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <script>
     $( function() {
-      $( "#datepicker" ).datepicker();
+	  var today = new Date();
+      $( "#datepicker" ).datepicker({ 
+	       dateFormat: 'yy-mm-dd',
+		   minDate: '$today'});
     });
   </script>
   
@@ -75,7 +89,7 @@
   }
 </style>
 
-<body bgcolor="beige">
+<body>
 
   <div class="main">
     <h1 style="font-family:Algeria; font-size:300%; color:red;"> Book an Appointment ASAP </h1> </br>
@@ -102,26 +116,26 @@
 
         <tr class="form-tr">
           <td valign="top" class="form-td">Type of Pest problem</td>
-          <td class="form-td"><input type="radio" id="Termites" name="pest type" value="Termites"><label
+          <td class="form-td"><input type="radio" id="Termites" name="pest_type" value="Termites"><label
               for="Termites">Termites</label><br>
-            <input type="radio" id="Mice" name="pest type" value="Mice"><label for="Mice">Mice</label><br>
-            <input type="radio" id="Cockroaches" name="pest type" value="Cockroaches"><label
-              for="Cockroaches">Cockroaches</label><br></td>
+            <input type="radio" id="Mice" name="pest_type" value="Mice"><label for="Mice">Mice</label><br>
+            <input type="radio" id="Cockcroaches" name="pest_type" value="Cockcroaches"><label
+              for="Cockcroaches">Cockcroaches</label><br></td>
         </tr>
         <tr class="form-tr">
           <td valign="top" class="form-td">Date for Visit</td>
-          <td class="form-td"><div id="datepicker"></div></td>
+          <td class="form-td"><input type="text" id="datepicker" name="date" autocomplete="none"></td>
         </tr>
         <tr class="form-tr">
           <td valign="top" class="form-td">Best Time</td>
-          <td class="form-td"><input type="radio" id="Morning" name="best time" value="Morning"><label for="Morning">Morning</label><br>
-            <input type="radio" id="Afternoon" name="best time" value="Afternoon"><label
+          <td class="form-td"><input type="radio" id="Morning" name="best_time" value="Morning"><label for="Morning">Morning</label><br>
+            <input type="radio" id="Afternoon" name="best_time" value="Afternoon"><label
               for="Afternoon">Afternoon</label><br></td>
         </tr> </br>
 
         <tr class="form-tr">
           <td valign="top" class="form-td">Comments</td>
-          <td class="form-td"><textarea style="width:400px; height:200px;"></textarea></td>
+          <td class="form-td"><textarea style="width:400px; height:200px;" name="comments"></textarea></td>
         </tr>
 
         <tr class="form-tr">
