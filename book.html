@@ -55,6 +55,12 @@ padding:2%
 
     } //end validate_email
 	
+	function validateDate(bDate, element){
+	    var currentDate = new Date();
+		var bookingDate = new Date(bDate);
+		
+	}
+	
     function radioValidation1(){
 
         var pest_type = document.getElementsByName('pest_type');
@@ -107,7 +113,24 @@ padding:2%
 	  var today = new Date();
       $( "#datepicker" ).datepicker({ 
 	       dateFormat: 'yy-mm-dd',
-		   minDate: '$today'});	   
+		   minDate: '$today', 
+		   onSelect: function () { 
+				var bookingDate = $(this).datepicker('getDate');
+				var currentDate = new Date();
+				var curntDate = currentDate.setDate(currentDate.getDate()-1);
+				var bkngDate = bookingDate.setDate(bookingDate.getDate());
+				console.log(curntDate);
+				console.log(bkngDate);
+				console.log(document.getElementById('datepicker').onblur);
+				if ((bkngDate >= curntDate)){
+					document.getElementById('datepicker').style.border = 'dashed 2px green';
+				} //end if
+				else {
+						//document.getElementById('datepicker').style.border-size = 5px;
+					document.getElementById('datepicker').style.border = 'dashed 2px red';
+				} 
+			}
+		});
     });
 	
 	 
@@ -169,7 +192,8 @@ padding:2%
         </tr>
         <tr class="form-tr">
           <td valign="top" class="form-td">Date for Visit</td>
-          <td class="form-td"><input type="text" id="datepicker" name="date" autocomplete="none" required></td>
+          <td class="form-td"><input type="text" id="datepicker" name="date" autocomplete="none"
+			 required></td>
         </tr>
         <tr class="form-tr">
           <td valign="top" class="form-td">Best Time</td>
