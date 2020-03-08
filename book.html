@@ -3,139 +3,132 @@
 <html>
 
 <head>
-<style>
-div {
-
-margin: auto;
-width: 80%;
-display: block;
-border: solid 4px;
-padding:2%
-
- }
-</style>
-  <script>
-    function validate_num(number, element, min_len, max_len) {
-      //definition of my function  
-
-
-      var numbers = /^[0-9]+$/;
-      if ((number.length > (min_len - 1)) && (number.length < (max_len + 1)) && (number.match(numbers))) {
-        element.style.border = 'dashed 2px green';
-
-      } //end if
-      else {
-        element.style.border = 'dashed 2px red'
-
-      } //end else
-
-    } // end of validate_num
-
-    function validate_text(text, element) {
-
-      var letters = /^[A-Za-z,' ']+$/;
-      if ((text.length > 0) && (text.length < 20) &&(text.match(letters))) {
-        element.style.border = 'dashed 2px green';
-      } //end if
-      else {
-        element.style.border = 'dashed 2px red';
-      } //end else
-
-    } // end of validate_text  
-
-    function validate_email(email_text, element) {
-      var letters = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      if (email_text.match(letters)) {
-        element.style.border = 'dashed 2px green';
-      } //end if
-      else {
-        //element.style.border-size = 5px;
-        element.style.border = 'dashed 2px red';
-      } //end else
-
-    } //end validate_email
-	
-	function validateDate(bDate, element){
-	    var currentDate = new Date();
-		var bookingDate = new Date(bDate);
-		
-	}
-	
-    function radioValidation1(){
-
-        var pest_type = document.getElementsByName('pest_type');
-        var pest_typeValue = false;
-
-        for(var i=0; i<pest_type.length;i++){
-            if(pest_type[i].checked == true){
-                pest_typeValue = true;    
-            }
-        }
-        if(!pest_typeValue){
-            alert("Please Choose the Type of Pest Problem");
-            return false;
-        }
-		 else {
-         return radioValidation2();
-      }
-
-    }//end radio validation for Type of Pest Problem
-	
-	 function radioValidation2(){
-
-        var best_time = document.getElementsByName('best_time');
-        var best_timeValue = false;
-
-        for(var i=0; i<best_time.length;i++){
-            if(best_time[i].checked == true){
-                best_timeValue = true;    
-            }
-        }
-        if(!best_timeValue){
-            alert("Please Choose the Best Time");
-            return false;
-        }
-		else{}
-
-    }//end radio validation for Best Time
-	
-</script>
-	
-	
-	
-  </script>
-
   <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
   <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
   <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <style>
+    div {
+
+      margin: auto;
+      width: 80%;
+      display: block;
+      border: solid 4px;
+      padding: 2%
+    }
+  </style>
   <script>
-    $( function() {
-	  var today = new Date();
-      $( "#datepicker" ).datepicker({ 
-	       dateFormat: 'yy-mm-dd',
-		   minDate: '$today', 
-		   onSelect: function () { 
-				var bookingDate = $(this).datepicker('getDate');
-				var currentDate = new Date();
-				var curntDate = currentDate.setDate(currentDate.getDate()-1);
-				var bkngDate = bookingDate.setDate(bookingDate.getDate());
-				console.log(curntDate);
-				console.log(bkngDate);
-				console.log(document.getElementById('datepicker').onblur);
-				if ((bkngDate >= curntDate)){
-					document.getElementById('datepicker').style.border = 'dashed 2px green';
-				} //end if
-				else {
-						//document.getElementById('datepicker').style.border-size = 5px;
-					document.getElementById('datepicker').style.border = 'dashed 2px red';
-				} 
-			}
-		});
+    function validate_text() {
+      var letters = /^[A-Za-z,' ']+$/;
+      if ((document.getElementById('fname').value.length > 1) && (document.getElementById('fname').value.length < 20) &&
+        (document.getElementById('fname').value.match(letters))) {
+        document.getElementById('fname').style.border = 'dashed 2px green';
+        return true;
+      } //end if
+      else {
+        document.getElementById('fname').style.border = 'dashed 2px red';
+        return false;
+      } //end else
+      return false;
+    } // end of validate_text  
+
+    function validate_email() {
+      var letters = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if (document.getElementById('email').value.match(letters)) {
+        document.getElementById('email').style.border = 'dashed 2px green';
+        return true;
+      } //end if
+      else {
+        //element.style.border-size = 5px;
+        document.getElementById('email').style.border = 'dashed 2px red';
+        return false;
+      } //end else
+      return false;
+    } //end validate_email
+
+    function validate_num() {
+      //definition of my function  
+      var numbers = /^[0-9]+$/;
+      min_len = 10;
+      max_len = 10;
+      if ((document.getElementById('contact').value.length > (min_len - 1)) && (document.getElementById('contact').value
+          .length < (max_len + 1)) && (document.getElementById('contact').value.match(numbers))) {
+        document.getElementById('contact').style.border = 'dashed 2px green';
+        return true;
+      } //end if
+      else {
+        document.getElementById('contact').style.border = 'dashed 2px red';
+        return false;
+      } //end else
+      return false;
+    } // end of validate_num
+
+
+    function radioValidation1() {
+      var valid = false;
+      var pest_type = document.getElementsByName('pest_type');
+      var pest_typeValue = false;
+
+      for (var i = 0; i < pest_type.length; i++) {
+        if (pest_type[i].checked == true) {
+          pest_typeValue = true;
+        }
+      }
+      if (!pest_typeValue) {
+        return false;
+      } else {
+        return radioValidation2();
+      }
+
+    } //end radio validation for Type of Pest Problem
+
+    function radioValidation2() {
+      var valid = false;
+      var best_time = document.getElementsByName('best_time');
+      var best_timeValue = false;
+
+      for (var i = 0; i < best_time.length; i++) {
+        if (best_time[i].checked == true) {
+          best_timeValue = true;
+        }
+      }
+      if (!best_timeValue) {
+        return false;
+      } else {}
+
+    } //end radio validation for Best Time
+
+
+    $(function () {
+      var today = new Date();
+      $("#datepicker").datepicker({
+        dateFormat: 'yy-mm-dd',
+        minDate: '$today',
+        onClose: function () {
+          var bookingDate = $(this).datepicker('getDate');
+          var currentDate = new Date();
+          var curntDate = currentDate.setDate(currentDate.getDate() - 1);
+          var bkngDate = bookingDate.setDate(bookingDate.getDate());
+          if ((bkngDate >= curntDate)) {
+            document.getElementById('datepicker').style.border = 'dashed 2px green';
+            document.getElementById('submit').disabled = false;
+          } //end if
+          else {
+            //document.getElementById('datepicker').style.border-size = 5px;
+            document.getElementById('datepicker').style.border = 'dashed 2px red';
+          }
+        }
+      });
     });
-	
-	 
+
+    function allValidInput() {
+      if (this.validate_text() == false || this.validate_email() == false || this.validate_num() == false ||
+        this.radioValidation1() == false) {
+        console.log("success");
+        return false;
+      };
+      return true;
+    }
   </script>
-  
 
 </head>
 
@@ -148,10 +141,12 @@ padding:2%
     display: block;
     width: 50%;
   }
-  .form-tr{
+
+  .form-tr {
     padding: 2%;
   }
-  .form-td{
+
+  .form-td {
     min-width: 200px;
     padding: 2%;
   }
@@ -159,8 +154,9 @@ padding:2%
 
 <body>
 
-  <div class="main">
-    <h1 style="font-family:Algeria; font-size:300%; color:red;"> Book an Appointment ASAP </h1> </br>
+  <div class="main" style="min-width: 400px;">
+    <h1 style="font-family:Algeria; font-size:300%; color:red; text-align: center; justify-content: center;"> Book an
+      Appointment ASAP </h1> </br>
 
 
 
@@ -168,48 +164,45 @@ padding:2%
       <table>
         <tr class="form-tr">
           <td class="form-td">Name</td>
-          <td class="form-td"><input type="text" id="fname" name="fname"
-              onblur="validate_text(fname.value, document.getElementById('fname'))" required /></td>
+          <td class="form-td"><input type="text" id="fname" name="fname" onblur="validate_text()" required /></td>
         </tr>
         <tr class="form-tr">
           <td class="form-td">Email</td>
-          <td class="form-td"><input type="email" id="email" name="email"
-              onblur="validate_email(email.value,document.getElementById('email'))" required /></td>
+          <td class="form-td"><input type="email" id="email" name="email" onblur="validate_email()" required /></td>
         </tr>
         <tr class="form-tr">
           <td valign="top" class="form-td">Contact</td>
-          <td class="form-td"><input type="text" id="contact" name="contact"
-              onblur="validate_num(contact.value, document.getElementById('contact'), 10, 10)" required /> </td>
+          <td class="form-td"><input type="text" id="contact" name="contact" onblur="validate_num()" required /> </td>
         </tr>
 
         <tr class="form-tr">
           <td valign="top" class="form-td">Type of Pest problem</td>
-          <td class="form-td"><input type="radio" id="Termites" name="pest_type" value="Termites"/><label
+          <td class="form-td"><input type="radio" id="Termites" name="pest_type" value="Termites" /><label
               for="Termites">Termites</label><br>
-            <input type="radio" id="Mice" name="pest_type" value="Mice"/><label for="Mice">Mice</label><br>
+            <input type="radio" id="Mice" name="pest_type" value="Mice" /><label for="Mice">Mice</label><br>
             <input type="radio" id="Cockcroaches" name="pest_type" value="Cockcroaches"><label
               for="Cockcroaches">Cockcroaches</label><br></td>
         </tr>
         <tr class="form-tr">
           <td valign="top" class="form-td">Date for Visit</td>
-          <td class="form-td"><input type="text" id="datepicker" name="date" autocomplete="none"
-			 required></td>
+          <td class="form-td"><input type="text" id="datepicker" name="date" autocomplete="none" required></td>
         </tr>
         <tr class="form-tr">
           <td valign="top" class="form-td">Best Time</td>
-          <td class="form-td"><input type="radio" id="Morning" name="best_time" value="Morning"><label for="Morning">Morning</label><br>
+          <td class="form-td"><input type="radio" id="Morning" name="best_time" value="Morning"><label
+              for="Morning">Morning</label><br>
             <input type="radio" id="Afternoon" name="best_time" value="Afternoon"><label
               for="Afternoon">Afternoon</label><br></td>
         </tr> </br>
 
         <tr class="form-tr">
           <td valign="top" class="form-td">Comments</td>
-          <td class="form-td"><textarea style="width:400px; height:200px;" name="comments"></textarea></td>
+          <td class="form-td"><textarea style="width:80%; min-height: 100px;" name="comments"></textarea></td>
         </tr>
 
         <tr class="form-tr">
           <td class="form-td"></td>
-          <td class="form-td"><button type="submit" onclick="return radioValidation1()">Submit </button></td>
+          <td class="form-td"><button id="submit" type="submit" onclick="return allValidInput()" disabled>Submit </button></td>
         </tr>
 
       </table>
