@@ -33,7 +33,7 @@ padding:2%
 
     function validate_text(text, element) {
 
-      var letters = /^[a-z,' ']+$/;
+      var letters = /^[A-Za-z,' ']+$/;
       if ((text.length > 0) && (text.length < 20) &&(text.match(letters))) {
         element.style.border = 'dashed 2px green';
       } //end if
@@ -146,17 +146,17 @@ padding:2%
         <tr class="form-tr">
           <td class="form-td">Name</td>
           <td class="form-td"><input type="text" id="fname" name="fname"
-              onblur="validate_text(fname.value, document.getElementById('fname'))" /></td>
+              onblur="validate_text(fname.value, document.getElementById('fname'))" required /></td>
         </tr>
         <tr class="form-tr">
           <td class="form-td">Email</td>
           <td class="form-td"><input type="email" id="email" name="email"
-              onblur="validate_email(email.value,document.getElementById('email'))" /></td>
+              onblur="validate_email(email.value,document.getElementById('email'))" required /></td>
         </tr>
         <tr class="form-tr">
           <td valign="top" class="form-td">Contact</td>
           <td class="form-td"><input type="text" id="contact" name="contact"
-              onblur="validate_num(contact.value, document.getElementById('contact'), 10, 10)" /> </td>
+              onblur="validate_num(contact.value, document.getElementById('contact'), 10, 10)" required /> </td>
         </tr>
 
         <tr class="form-tr">
@@ -169,7 +169,7 @@ padding:2%
         </tr>
         <tr class="form-tr">
           <td valign="top" class="form-td">Date for Visit</td>
-          <td class="form-td"><input type="text" id="datepicker" name="date" autocomplete="none"></td>
+          <td class="form-td"><input type="text" id="datepicker" name="date" autocomplete="none" required></td>
         </tr>
         <tr class="form-tr">
           <td valign="top" class="form-td">Best Time</td>
