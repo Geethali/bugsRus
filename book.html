@@ -34,7 +34,7 @@ padding:2%
     function validate_text(text, element) {
 
       var letters = /^[a-z,' ']+$/;
-      if ((text.length > 0) && (text.match(letters))) {
+      if ((text.length > 0) && (text.length < 20) &&(text.match(letters))) {
         element.style.border = 'dashed 2px green';
       } //end if
       else {
@@ -54,6 +54,49 @@ padding:2%
       } //end else
 
     } //end validate_email
+	
+    function radioValidation1(){
+
+        var pest_type = document.getElementsByName('pest_type');
+        var pest_typeValue = false;
+
+        for(var i=0; i<pest_type.length;i++){
+            if(pest_type[i].checked == true){
+                pest_typeValue = true;    
+            }
+        }
+        if(!pest_typeValue){
+            alert("Please Choose the Type of Pest Problem");
+            return false;
+        }
+		 else {
+         return radioValidation2();
+      }
+
+    }//end radio validation for Type of Pest Problem
+	
+	 function radioValidation2(){
+
+        var best_time = document.getElementsByName('best_time');
+        var best_timeValue = false;
+
+        for(var i=0; i<best_time.length;i++){
+            if(best_time[i].checked == true){
+                best_timeValue = true;    
+            }
+        }
+        if(!best_timeValue){
+            alert("Please Choose the Best Time");
+            return false;
+        }
+		else{}
+
+    }//end radio validation for Best Time
+	
+</script>
+	
+	
+	
   </script>
 
   <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
@@ -64,8 +107,10 @@ padding:2%
 	  var today = new Date();
       $( "#datepicker" ).datepicker({ 
 	       dateFormat: 'yy-mm-dd',
-		   minDate: '$today'});
+		   minDate: '$today'});	   
     });
+	
+	 
   </script>
   
 
@@ -116,9 +161,9 @@ padding:2%
 
         <tr class="form-tr">
           <td valign="top" class="form-td">Type of Pest problem</td>
-          <td class="form-td"><input type="radio" id="Termites" name="pest_type" value="Termites"><label
+          <td class="form-td"><input type="radio" id="Termites" name="pest_type" value="Termites"/><label
               for="Termites">Termites</label><br>
-            <input type="radio" id="Mice" name="pest_type" value="Mice"><label for="Mice">Mice</label><br>
+            <input type="radio" id="Mice" name="pest_type" value="Mice"/><label for="Mice">Mice</label><br>
             <input type="radio" id="Cockcroaches" name="pest_type" value="Cockcroaches"><label
               for="Cockcroaches">Cockcroaches</label><br></td>
         </tr>
@@ -140,7 +185,7 @@ padding:2%
 
         <tr class="form-tr">
           <td class="form-td"></td>
-          <td class="form-td"><button type="submit">Submit </button></td>
+          <td class="form-td"><button type="submit" onclick="return radioValidation1()">Submit </button></td>
         </tr>
 
       </table>
